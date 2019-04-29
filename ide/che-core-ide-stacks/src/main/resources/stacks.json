@@ -2639,6 +2639,77 @@
     }
   },
   {
+    "id": "apache-camel-springboot-che7-preview",
+    "creator": "ide",
+    "name": "Apache Camel based projects on Che 7",
+    "description": "Stack with environment ready to develop Integration projects with Apache Camel based on SpringBoot.",
+    "scope": "general",
+    "tags": [
+      "Apache Camel",
+      "Red Hat Fuse",
+      "Agile Integration"
+    ],
+    "components": [
+      {
+        "name": "Centos",
+        "version": "7"
+      },
+      {
+        "name": "OpenJDK",
+        "version": "1.8.0_181"
+      },
+      {
+        "version": "3.3.9",
+        "name": "RH-Maven"
+      }
+    ],
+    "workspaceConfig": {
+      "name": "camel",
+      "defaultEnv": "default",
+      "environments": {
+        "default": {
+          "machines": {
+            "ws/dev": {
+              "attributes": {
+                "memoryLimitBytes": "512000000",
+                "containerCommand": "['sleep']",
+                "containerArgs": "['infinity']"
+              },
+              "servers": {},
+              "volumes": {
+                "projects": {
+                  "path": "/projects"
+                }
+              },
+              "installers": [],
+              "env": {}
+            }
+          },
+          "recipe": {
+            "type": "kubernetes",
+            "content": "kind: List\nitems:\n - \n  apiVersion: v1\n  kind: Pod\n  metadata:\n   name: ws\n  spec:\n   containers:\n    - \n     image: 'eclipse/che-dev:nightly'\n     name: dev\n     resources:\n      limits:\n       memory: 512Mi\n",
+            "contentType": "application/x-yaml"
+          }
+        }
+      },
+      "projects": [],
+      "attributes": {
+        "editor": "org.eclipse.che.editor.theia:next",
+        "plugins": "che-machine-exec-plugin:0.0.1,redhat.vscode-xml:0.5.1,camel-tooling.vscode-apache-camel:0.0.14",
+        "sidecar.org.eclipse.che.editor.theia.memory_limit": "512Mi",
+        "sidecar.org.eclipse.che.vscode-redhat.java.memory_limit": "1024Mi",
+        "sidecar.org.eclipse.che.redhat.vscode-xml.memory_limit": "256Mi",
+        "sidecar.org.eclipse.che.camel-tooling.vscode-apache-camel.memory_limit": "256Mi"
+      },
+      "commands": [],
+      "links": []
+    },
+    "stackIcon": {
+      "name": "type-apache-camel.svg",
+      "mediaType": "image/svg+xml"
+    }
+  },
+  {
     "id": "python",
     "name": "Python with Theia IDE",
     "creator": "Anatolii Bazko",
